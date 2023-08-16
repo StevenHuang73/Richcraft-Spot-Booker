@@ -30,7 +30,6 @@ def register(name1, phone1, date, time1, program, spots):
             browser.find_element(by=By.XPATH, value='//*[@id="submit-btn"]/span').click()
             browser.find_element(by=By.LINK_TEXT, value=date).click()
             string = "'" + time1 + " " + date + "'"
-            print(string)
             browser.find_element(by=By.XPATH, value = "//a[@aria-label="+string+"]").click()
             phone_number = browser.find_element(by=By.XPATH, value='//*[@id="telephone"]')
             phone_number.clear()

@@ -4,7 +4,7 @@ from tkcalendar import Calendar
 from Bot import register
 from datetime import datetime
 
-
+# App
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
