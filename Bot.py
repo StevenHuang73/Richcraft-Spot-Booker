@@ -36,7 +36,7 @@ def register(name1, phone1, date, time1, program, spots):
             phone_number.send_keys(phone1)
             email = browser.find_element(by=By.XPATH, value='//*[@id="email"]')
             email.clear()
-            email.send_keys("bananalog135@gmail.com")
+            email.send_keys("<EMAIL>")
             # name = browser.find_element(by=By.XPATH,value='//*[@id="field2065"]') //*[@id="mainForm"]/div[2]/div/div[4]/div[1]/label/span
             # (xpath = "//*[contains(text(), 'Best Choice')]")
 
@@ -51,7 +51,7 @@ def register(name1, phone1, date, time1, program, spots):
             for x in range(10):
                 try:
                     time.sleep(2)
-                    x = get_code("bananalog135@gmail.com","bnsznddipshaicwe",'imap.gmail.com')
+                    x = get_code("<EMAIL>","<PASSWORD>",'imap.gmail.com')
                     if(len(x) == 4):
                         break
                     time.sleep(0.3)
