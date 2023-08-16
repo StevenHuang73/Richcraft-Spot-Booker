@@ -12,6 +12,9 @@ chrome_options = Options()
 
 # Enable headless mode
 chrome_options.add_argument("--headless")
+
+email_address = "PUT EMAIL HERE"
+email_password = "PUT PASSWORD HERE"
 def register(name1, phone1, date, time1, program, spots):
     browser = webdriver.Chrome()
     currentDay = datetime.now().day
@@ -36,7 +39,7 @@ def register(name1, phone1, date, time1, program, spots):
             phone_number.send_keys(phone1)
             email = browser.find_element(by=By.XPATH, value='//*[@id="email"]')
             email.clear()
-            email.send_keys("<EMAIL>")
+            email.send_keys(email_address)
             # name = browser.find_element(by=By.XPATH,value='//*[@id="field2065"]') //*[@id="mainForm"]/div[2]/div/div[4]/div[1]/label/span
             # (xpath = "//*[contains(text(), 'Best Choice')]")
 
@@ -51,7 +54,7 @@ def register(name1, phone1, date, time1, program, spots):
             for x in range(10):
                 try:
                     time.sleep(2)
-                    x = get_code("<EMAIL>","<PASSWORD>",'imap.gmail.com')
+                    x = get_code(email_address, email_password, 'imap.gmail.com')
                     if(len(x) == 4):
                         break
                     time.sleep(0.3)
