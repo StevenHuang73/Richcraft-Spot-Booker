@@ -22,7 +22,7 @@ calender = Calendar(frame, showweeknumbers = False, showothermonthdays = False)
 calender.place(x = 510, y=55, width = 300, height = 300)
 
 category = customtkinter.CTkOptionMenu(frame, values=["Badminton doubles - adult", "Badminton doubles - all ages", 
-                                                      "Badminton - Family", "Open gym", "Open gym - Family", "Open gym - youth", "Cardio 50+"],
+                                                      "Badminton - Family", "Open gym", "Open gym - Family", "Open gym - youth", "Aqua general - deep"],
                                                       width = 220)
 category.place(x = 30, y = 85)
 
@@ -44,23 +44,29 @@ ap.place(x = 565, y = 300)
 spots = customtkinter.CTkEntry(frame, width = 65, placeholder_text="Spots")
 spots.place(x=30, y= 235)
 def popup(message):
-    popup = tk.Toplevel(root)
-    label = tk.Label(popup, text=message)
+    popup = customtkinter.CTkToplevel(root)
+    label = customtkinter.CTkLabel(popup, text=message)
     label.pack(padx=20, pady=20)
-    
-def initiate():
-    entryName = name.get()
-    entryPhone = phone.get()
-    time1 = hour.get() + ":" + minute.get() + " " + ap.get().upper()
-    entrySpots = spots.get()
-    program1 = category.get()
+    popup.wm_transient(root)
+
+def getDate():
     date = calender.get_date()
     formatted_date = datetime.strptime(date, "%m/%d/%y").strftime("%B %d, %Y") 
     selected_datetime = datetime.strptime(date, "%m/%d/%y")
     day_of_week = selected_datetime.strftime("%A")
-    final_date = day_of_week + " " +formatted_date
-    result=register(entryName, entryPhone, final_date, time1, program1, entrySpots)
+    return day_of_week + " " +formatted_date
+
+    
+def initiate():
+    entryName = name.get()
+    entryPhone = phone.get()
+    entryTime = hour.get() + ":" + minute.get() + " " + ap.get().upper()
+    entrySpots = spots.get()
+    entryProgram = category.get()
+    entryDate = getDate()
+    result=register(entryName, entryPhone, entryDate, entryTime, entryProgram, entrySpots)
     popup(result)
+
 
 submit = customtkinter.CTkButton(frame, text="Submit", command=initiate)
 submit.place(x = 60, y=285)

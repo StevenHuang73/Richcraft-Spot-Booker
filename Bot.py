@@ -49,9 +49,9 @@ def register(name1, phone1, date, time1, program, spots):
             time.sleep(0.5)
             browser.find_element(by=By.XPATH, value='//*[@id="submit-btn"]/span').click()
 
-            time.sleep(6)
             for x in range(10):
                 try:
+                    time.sleep(2)
                     x = get_code("bananalog135@gmail.com","bnsznddipshaicwe",'imap.gmail.com')
                     if(len(x) == 4):
                         break
