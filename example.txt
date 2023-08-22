@@ -1,1 +1,1 @@
-python bot.py "Zumba" "Friday July 21, 2023" "6:00 PM" "3432626906" "bananalog135@gmail.com" "Kora" "bnsznddipshaicwe"
+python bot.py "Zumba" "Friday July 21, 2023" "6:00 PM" "3436625906" "bananaleg165@gmail.com" "Kora" "bnsznedigs5abcwe"
