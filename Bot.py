@@ -7,15 +7,14 @@ import sys
 import time
 from getcode import get_code
 
-# Create ChromeOptions object
+# Headless option, might not work
 chrome_options = Options()
-
-# Enable headless mode
 chrome_options.add_argument("--headless")
 
-email_address = "PUT EMAIL HERE"
-email_password = "PUT PASSWORD HERE"
-def register(name1, phone1, date, time1, program, spots):
+email_address = "<EMAIL>"
+email_password = "<PASSWORD>"
+
+def register(name1, phone1, date, time1, program, spots, location):
     browser = webdriver.Chrome()
     currentDay = datetime.now().day
     currentMonth = datetime.now().month
@@ -23,8 +22,8 @@ def register(name1, phone1, date, time1, program, spots):
     print(currentYear,currentMonth,currentDay)
     for y in range(5):
         try:
-            browser.get('https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/Index?Culture=en&PageId=b3b9b36f-8401-466d-b4c4-19eb5547b43a&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000')
-            #pause.until(datetime(currentYear, currentMonth, currentDay, hour=18, minute=0, second=0))
+            browser.get(location)
+            pause.until(datetime(currentYear, currentMonth, currentDay, hour=18, minute=0, second=0))
 
             browser.find_element(by=By.LINK_TEXT, value=program).click()
             number = browser.find_element(by=By.XPATH, value='//*[@id="reservationCount"]')
@@ -33,6 +32,7 @@ def register(name1, phone1, date, time1, program, spots):
             browser.find_element(by=By.XPATH, value='//*[@id="submit-btn"]/span').click()
             browser.find_element(by=By.LINK_TEXT, value=date).click()
             string = "'" + time1 + " " + date + "'"
+            print(string)
             browser.find_element(by=By.XPATH, value = "//a[@aria-label="+string+"]").click()
             phone_number = browser.find_element(by=By.XPATH, value='//*[@id="telephone"]')
             phone_number.clear()
@@ -54,7 +54,7 @@ def register(name1, phone1, date, time1, program, spots):
             for x in range(10):
                 try:
                     time.sleep(2)
-                    x = get_code(email_address, email_password, 'imap.gmail.com')
+                    x = get_code(email_address,email_password,'imap.gmail.com')
                     if(len(x) == 4):
                         break
                     time.sleep(0.3)
@@ -74,4 +74,5 @@ def register(name1, phone1, date, time1, program, spots):
             print("error", e)
             
         return("Fail")
+
 
